@@ -1,0 +1,37 @@
+<div class="container">
+ <h1>
+  Current Available Denomination in Machine
+ </h1>
+ <form action=""  (ngSubmit)="depositMoney(createJobForm)" name="createJobForm" #createJobForm="ngForm">
+  <table class="striped-table">
+    <tbody>
+     <tr *ngFor="let item of moneyAvailable|keyvalue:zero">
+      <td>{{item.key}}</td>
+      <td>{{item.value.number}}</td>
+      <td><input type="text" name="{{item.key}}" [(ngModel)]="item.value.inserted" placeholder="0"></td>
+     </tr>
+     <tr>
+      <td><b>Total</b></td>
+      <td>{{total}}</td>
+      <td  >
+        <button class="btn btn-primary" type="submit">Deposit</button>
+      </td>
+     </tr>
+    </tbody>
+    
+  </table>
+  
+
+
+ </form>
+ <div class="justify-content-between ml-1 mr-1 mt-2 row w-90">
+  
+  <input type="text" class="form-control col-9  mr-2" [(ngModel)]="withdraw"><button class="btn btn-success col-1" (click)="withdrawMoney()">Withdraw!</button>
+ </div>
+ <div *ngIf="alerts && alerts.length>0" class="w-90">
+  <div *ngFor="let alert of alerts" class="alert alert-{{alert.type}}  mt-2 mb-1 " role="alert">
+    <h6 class="alert-heading">{{alert.heading}} <span *ngIf="alert.output">{{alert.output}}</span></h6>
+    <p class="mb-0"> {{alert.time}}</p>
+  </div>
+</div>
+</div>
